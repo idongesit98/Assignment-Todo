@@ -4,20 +4,12 @@ const db = require('./MongoDb/db')
 const connectEnsureLogin = require('connect-ensure-login');
 const userModel = require('./Models/User')
 const session = require('express-session')
-//const MongoStore = require('connect-mongo')
 const PORT = 3000;
 const app = express();
 const path = require('path')
 
 require('dotenv').config()
 require('./config/authServices')
-
-//mongodb connection
-const mongoUri = process.env.MONGO_URI
-if (!mongoUri) {
-    console.error('MongoDB URI is missing. Set MONGO_URI in environment variables.');
-    process.exit(1);
-}
 
 db.connectToMongoDB();
 const authRoutes = require('./Routes/userRoute');
@@ -26,13 +18,8 @@ const taskRoutes = require('./Routes/taskRoute')
 app.use(session({
     secret:process.env.SESSION_SECRET || 'default-secret',
     resave:false,
-    saveUninitialized:true,  //true,
-    // store:MongoStore.create({
-    //     mongoUrl:mongoUri,
-    //     ttl:14 * 24 * 60 * 60
-    // }),
+    saveUninitialized:true,
     cookie:{
-        //secure:process.env.NODE_ENV === "production",
         maxAge: 60 * 60 * 1000
     }
 }));
