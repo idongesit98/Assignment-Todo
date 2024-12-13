@@ -6,6 +6,7 @@ const userModel = require('./Models/User')
 const session = require('express-session')
 const PORT = 3000;
 const app = express();
+const path = require('path')
 require('dotenv').config()
 require('./config/authServices')
 
@@ -27,8 +28,9 @@ passport.use(userModel.createStrategy())
 passport.serializeUser(userModel.serializeUser())
 passport.deserializeUser(userModel.deserializeUser());
 
-app.set('views', 'views');
+//app.set('views', 'views');
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 //secure the routes
 app.use('/tasks',connectEnsureLogin.ensureLoggedIn(), taskRoutes)

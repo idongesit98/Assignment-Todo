@@ -11,6 +11,8 @@ router.post('/create', connectEnsureLogin.ensureLoggedIn(), async (req,res) => {
         user:req.user.id
     });
     await task.save();
+    //res.status(201).send('Created Successfully')
+    console.log(task)
     res.redirect('/tasks')
 })
 
@@ -38,7 +40,7 @@ router.post('/:id/update',connectEnsureLogin.ensureLoggedIn(), async(req,res) =>
 //Get all task
 router.get('/', connectEnsureLogin.ensureLoggedIn(), async (req,res) => {
     try {
-        //This fetch task for the logged in user
+        //This fetches all the task for the logged in user
         const tasks = await Task.find({user:req.user.id});
 
         //render the task.ejs view and pass the tasks
@@ -49,6 +51,7 @@ router.get('/', connectEnsureLogin.ensureLoggedIn(), async (req,res) => {
     }
 });
 
+//Get single user task
 router.get('/:id',(req,res) => {
     const id = req.params.id
     Task.findById(id)

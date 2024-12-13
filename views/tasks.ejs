@@ -4,42 +4,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Books</title>
+    <title>Tasks</title>
+    <link rel="stylesheet" href="/css/task.css">
   </head>
   <body>
-    <h1>Your Tasks</h1>
-    <form action="/tasks/create" method="POST">
-      <input type="text" name="title" placeholder="Title"/>
-      <input type="text" name="description" placeholder="Description" required/>
-      <button type="submit">Add</button>
-    </form>
+    <section class=""></section>
+      <header>
+        <h1>Your Tasks</h1>
+      </header>
+    
+      <section class="form-section">
+        <h2>Add a New Task</h2>
+        <form action="/tasks/create" method="POST">
+          <input type="text" name="title" placeholder="Title" required/>
+          <input type="text" name="description" placeholder="Description" required/>
+          <button type="submit">Add</button>
+        </form>
+      </section>
 
-    <h2>Pending Tasks</h2>
-    <ul>
-      <% tasks.filter(t => t.status === 'pending').forEach(task => { %>
-        <li><%= task.title %> 
-          <form action="/tasks/<%= task._id %>/update" method="POST" style="display:inline;">
-            <button type="submit" name="status" value="completed">Mark Completed</button>
-          </form>
-        </li>
-      <% }) %>
-    </ul>
+      <section class="tasks-section">
 
-    <h2>Update Tasks</h2>
-    <ul>
-      <% tasks.forEach(task => { %>
-        <li>
-          <strong><%= task.title %></strong> - <em><%= task.status %></em>
-          <form action="/tasks/<%= task._id %>/update" method="POST" style="display:inline;">
-            <select name="status" required>
-              <option value="pending" <%= task.status === 'pending' ? 'selected' : '' %>>Pending</option>
-              <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Completed</option>
-              <option value="deleted" <%= task.status === 'deleted' ? 'selected' : '' %>>Deleted</option>
-            </select>
-            <button type="submit">Change</button>
-          </form>
-        </li>
-      <% }) %>
-    </ul>
+        <h2>Pending Tasks</h2>
+        <ul class="tasks-list">
+          <% tasks.filter(t => t.status === 'pending').forEach(task => { %>
+            <li>
+              <span><%= task.title %></span>
+              <form action="/tasks/<%= task._id %>/update" method="POST" class="inline-form">
+                <button type="submit" name="status" value="completed">Mark Completed</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      </section>
+
+      <section class="tasks-section">
+        <h2>Update Tasks</h2>
+        <ul class="tasks-list">
+          <% tasks.forEach(task => { %>
+            <li>
+              <span><strong><%= task.title %></strong></span>
+              <span><em><%= task.status %></em></span>
+              <form action="/tasks/<%= task._id %>/update" method="POST" class="inline-form">
+                <select name="status" required>
+                  <option value="pending" <%= task.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                  <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Completed</option>
+                  <option value="deleted" <%= task.status === 'deleted' ? 'selected' : '' %>>Deleted</option>
+                </select>
+                <button type="submit">Change</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      </section>  
+      </section>
+    </section>
+  </body>
 
 </html>

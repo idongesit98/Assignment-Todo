@@ -1,0 +1,99 @@
+/* Auto reset for every parameter */
+body,h1,p,label,input,button,a{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-color: #41464b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Sign up section for form */
+.signup-container{
+    background: rgb(250, 248, 248);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.signup-form h1{
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #292828;
+}
+
+.signup-form p{
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 1rem;
+}
+
+.form-group{
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+label{
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 4px rgba(37, 117, 252, 0.5);
+}
+
+/* Submit button */
+.submit-btn {
+    background: #2575fc;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background: #6a11cb;
+}
+
+/*  For the Login link */
+.login-link {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.login-link a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
