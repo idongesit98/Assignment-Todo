@@ -7,6 +7,7 @@ const session = require('express-session')
 const PORT = 3000;
 const app = express();
 const path = require('path')
+const MongoStore = require('connect-mongo')
 require('dotenv').config()
 require('./config/authServices')
 
@@ -15,9 +16,13 @@ const authRoutes = require('./Routes/userRoute');
 const taskRoutes = require('./Routes/taskRoute')
 
 app.use(session({
-    secret:process.env.SESSION_SECRET,
+    secret:process.env.SESSION_SECRET || 'default-secret',
     resave:false,
     saveUninitialized:true,
+    store:MongoStore.create({
+        mongoUrl:process.env.MONGODB_URI,
+        ttl:14 * 24 * 60 * 60
+    }),
     cookie:{maxAge: 60 * 60 * 1000}
 }));
 
