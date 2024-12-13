@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const MONGO_URI = process.env.MONGO_URI;
-console.log("Mongo Uri: ", MONGO_URI)
 
 //connect to mongodb
 function connectToMongoDB() {

@@ -4,7 +4,7 @@ const db = require('./MongoDb/db')
 const connectEnsureLogin = require('connect-ensure-login');
 const userModel = require('./Models/User')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')
+//const MongoStore = require('connect-mongo')
 const PORT = 3000;
 const app = express();
 const path = require('path')
@@ -26,14 +26,14 @@ const taskRoutes = require('./Routes/taskRoute')
 app.use(session({
     secret:process.env.SESSION_SECRET || 'default-secret',
     resave:false,
-    saveUninitialized:false,  //true,
-    store:MongoStore.create({
-        mongoUrl:mongoUri,
-        ttl:14 * 24 * 60 * 60
-    }),
+    saveUninitialized:true,  //true,
+    // store:MongoStore.create({
+    //     mongoUrl:mongoUri,
+    //     ttl:14 * 24 * 60 * 60
+    // }),
     cookie:{
-        secure:process.env.NODE_ENV === "production",
-        maxAge: 14 * 24 * 60 * 60 * 1000
+        //secure:process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 1000
     }
 }));
 
