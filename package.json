@@ -17,11 +17,11 @@
   "name": "assignment-todo",
   "version": "1.0.0",
   "description": "Preparation for AltSchool Exams",
-  "main": "todo.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node todo.js",
-     "dev":"nodemon todo.js"
+     "start": "node index.js",
+     "dev":"nodemon index.js"
     
   },
   "author": "Idongesit Samuel Robson",
